@@ -6,9 +6,12 @@ import { getApp } from 'firebase-admin/app';
 
 export const runtime = 'nodejs';
 
-export async function GET(_: Request, context: { params: Record<string, string> }) {
+export async function GET(
+  _: Request,
+  { params }: { params: { [key: string]: string | string[] } }
+) {
   try {
-    const { podcastId } = context.params;
+    const podcastId = Array.isArray(params.podcastId) ? params.podcastId[0] : params.podcastId;
     const db = getFirestore(getApp());
     const doc = await db.collection('podcasts').doc(podcastId).get();
 

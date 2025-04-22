@@ -7,11 +7,11 @@ export const runtime = 'nodejs';
 
 export async function POST(
   request: NextRequest,
-  context: { params: Record<string, string> }
+  { params }: { params: { [key: string]: string | string[] } }
 ) {
   try {
     const db = getFirestore(getApp());
-    const { podcastId } = context.params;
+    const podcastId = Array.isArray(params.podcastId) ? params.podcastId[0] : params.podcastId;
 
     await db.collection('episodes').doc(podcastId).update({
       listens: FieldValue.increment(1)
