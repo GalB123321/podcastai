@@ -1,0 +1,13 @@
+{
+  "css.validate": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "css.customData": [".vscode/css-data.json"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+} 
