@@ -1,24 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true, // disables ESLint blocking Vercel builds
-  },
-  images: {
-    domains: ['lh3.googleusercontent.com', 'res.cloudinary.com'],
+    ignoreDuringBuilds: true,
   },
   webpack: (config) => {
     config.resolve.fallback = {
       fs: false,
-      tls: false,
       net: false,
+      tls: false,
+      crypto: false,
       path: false,
-      zlib: false,
+      os: false,
       http: false,
       https: false,
       stream: false,
-      crypto: false,
+      zlib: false,
     };
     return config;
+  },
+  images: {
+    domains: ['res.cloudinary.com', 'lh3.googleusercontent.com'],
   },
 };
 
