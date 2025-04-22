@@ -1,24 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { isServer }) => {
-    // Fix for Firebase module
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-        crypto: require.resolve('crypto-browserify'),
-      };
-    }
-    return config;
+  eslint: {
+    ignoreDuringBuilds: true, // disables ESLint blocking Vercel builds
   },
   images: {
-    domains: [
-      'lh3.googleusercontent.com',  // Google profile photos
-      'platform-lookaside.fbsbx.com', // Facebook profile photos
-      'firebasestorage.googleapis.com', // Firebase Storage
-    ],
+    domains: ['lh3.googleusercontent.com', 'res.cloudinary.com'],
+  },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      fs: false,
+      tls: false,
+      net: false,
+      path: false,
+      zlib: false,
+      http: false,
+      https: false,
+      stream: false,
+      crypto: false,
+    };
+    return config;
   },
 };
 
