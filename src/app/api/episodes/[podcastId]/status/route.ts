@@ -6,7 +6,7 @@ import { getApp } from 'firebase-admin/app';
 
 export const runtime = 'nodejs';
 
-export async function GET(_: Request, context: { params: { podcastId: string } }) {
+export async function GET(_: Request, context: { params: Record<string, string> }) {
   try {
     const { podcastId } = context.params;
     const db = getFirestore(getApp());

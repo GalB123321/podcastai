@@ -7,7 +7,7 @@ export const runtime = 'nodejs';
 
 export async function POST(
   request: NextRequest,
-  context: { params: { podcastId: string } }
+  context: { params: Record<string, string> }
 ) {
   try {
     const db = getFirestore(getApp());
